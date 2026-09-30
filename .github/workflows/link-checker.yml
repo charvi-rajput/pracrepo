@@ -1,0 +1,24 @@
+name: Check Markdown Links
+
+on:
+  push:
+    branches: [ "main", "master" ]
+  pull_request:
+    branches: [ "main", "master" ]
+
+jobs:
+  link-check:
+    name: Link Checker
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Run Markdown Link Checker
+        uses: gaurav-nelson/github-action-markdown-link-check@v1
+        with:
+          use-git-ignore: 'yes'
+          # Optional: Ignore specific external domains that block automated requests
+          # ignore_files: |
+          #   CHANGELOG.md
